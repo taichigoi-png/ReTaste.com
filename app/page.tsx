@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const statusItems = [
   "企画",
   "OEM相談",
@@ -20,14 +16,11 @@ const supportItems = [
 ];
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const currentStatus = statusItems[currentStep];
-
   return (
     <main>
       <header className="site-header" aria-label="Re. Taste">
         <a className="brand" href="#top" aria-label="Re. Taste トップへ">
-          <img src="/re-taste-logo.png" alt="" />
+          <img src="/re-taste-logo-transparent.png" alt="" />
           <span>Re. Taste</span>
         </a>
         <nav aria-label="サイト内メニュー">
@@ -71,6 +64,9 @@ export default function Home() {
         <div className="section-text">
           <p>Re. Tasteは、形や大きさ、見た目の理由で通常販売されにくい農産物に、新しい商品としての価値を生み出す活動です。</p>
           <p>「見た目が規格外だからといって、味や価値まで規格外ではない」。そのことを、説明だけでなく実際の商品を通して伝えていきます。</p>
+          <figure className="about-photo">
+            <img src="/mikan-orchard.png" alt="実ったみかんが並ぶみかん畑" />
+          </figure>
         </div>
       </section>
 
@@ -88,12 +84,15 @@ export default function Home() {
             <h3>生地に練り込む、<br />まっすぐなみかんの香り。</h3>
             <p>表面に付けるのではなく、みかんピールを生地に練り込みます。だから、崩れにくく、ラスクのどこをかじっても自然な風味が届く。</p>
           </article>
-          <dl className="product-specs">
-            <div><dt>INGREDIENT</dt><dd>規格外みかん由来の<br />みかんピール</dd></div>
-            <div><dt>TEXTURE</dt><dd>サクッと軽く、<br />あとから広がる香り</dd></div>
-            <div><dt>PACK</dt><dd>薄切りラスク 2枚入り<br />持ち運びやすい個包装</dd></div>
-            <div><dt>PRICE</dt><dd>1袋 150円程度を予定</dd></div>
-          </dl>
+          <div className="product-right">
+            <img className="product-process-image" src="/mikan-peel-process.png" alt="みかんピールを生地に練り込む様子" />
+            <dl className="product-specs">
+              <div><dt>INGREDIENT</dt><dd>規格外みかん由来の<br />みかんピール</dd></div>
+              <div><dt>TEXTURE</dt><dd>サクッと軽く、<br />あとから広がる香り</dd></div>
+              <div><dt>PACK</dt><dd>薄切りラスク 2枚入り<br />持ち運びやすい個包装</dd></div>
+              <div><dt>PRICE</dt><dd>1袋 150円程度を予定</dd></div>
+            </dl>
+          </div>
         </div>
       </section>
 
@@ -101,12 +100,13 @@ export default function Home() {
         <div>
           <p className="eyebrow">WHY MIKAN?</p>
           <h2>規格外でも、おいしさは変わらない。</h2>
+          <img className="origin-image" src="/mikan-orchard.png" alt="実ったみかんが並ぶみかん畑" />
         </div>
         <p>規格外農産物は、味ではなく見た目の条件で選ばれにくいことがあります。Re. Tasteは「食品ロスだから」ではなく、まず普通においしそうと思える商品をつくり、その背景として規格外みかんの価値を届けます。</p>
       </section>
 
       <section className="section story-section">
-        <div className="story-image" aria-hidden="true"><img src="/re-taste-logo.png" alt="" /></div>
+        <div className="story-image" aria-hidden="true"><img src="/re-taste-logo-transparent.png" alt="" /></div>
         <div>
           <p className="eyebrow">STORY</p>
           <h2>高校生が、商品化まで挑戦する。</h2>
@@ -120,13 +120,12 @@ export default function Home() {
           <div><p className="eyebrow">PROJECT STATUS</p><h2>商品化に向けて、<br />実行中。</h2></div>
           <p>いまはOEM会社への相談を進めながら、レシピ開発、試作、原価、個包装、賞味期限を具体化している段階です。</p>
         </div>
-        <div className="status-now" aria-live="polite"><span>NOW</span><strong>{currentStatus}</strong><p>バーを動かすと、現在地を確認できます。</p></div>
+        <div className="status-now"><span>NOW</span><strong>OEM相談</strong><p>現在、製造に向けた相談を進めています。</p></div>
         <div className="roadmap-wrap">
-          <input aria-label="プロジェクトの現在地を選択" className="status-range" max={statusItems.length - 1} min="0" onChange={(event) => setCurrentStep(Number(event.target.value))} style={{ "--progress": `${(currentStep / (statusItems.length - 1)) * 100}%` } as React.CSSProperties} type="range" value={currentStep} />
-          <ol className="roadmap" aria-label="プロジェクト進捗" style={{ "--timeline-progress": `${(currentStep / (statusItems.length - 1)) * 100}%` } as React.CSSProperties}>
+          <ol className="roadmap" aria-label="プロジェクト進捗" style={{ "--timeline-progress": "16.666%" } as React.CSSProperties}>
             {statusItems.map((item, index) => (
-              <li className={`${index <= currentStep ? "active" : ""} ${index === currentStep ? "current" : ""}`} key={item}>
-                <button aria-current={index === currentStep ? "step" : undefined} aria-label={`${item}を現在地にする`} onClick={() => setCurrentStep(index)} type="button"><span>{String(index + 1).padStart(2, "0")}</span></button>
+              <li className={`${index <= 1 ? "active" : ""} ${index === 1 ? "current" : ""}`} key={item}>
+                <span className="roadmap-point" aria-current={index === 1 ? "step" : undefined}>{String(index + 1).padStart(2, "0")}</span>
                 <p>{item}</p>
               </li>
             ))}
