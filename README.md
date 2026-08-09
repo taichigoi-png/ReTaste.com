@@ -8,9 +8,9 @@
 
 [Re. Taste 公式サイト](https://re-taste-mikan-rusk.jdrsk.chatgpt.site/)
 
-## GitHub で公開する
+## GitHub Pages で公開する
 
-このプロジェクトは GitHub にソースコードを公開できます。現在のサイトは Cloudflare Worker を使って動いているため、GitHub はコードの公開・管理先として使い、サイトの公開URLは上記のまま使う方法がおすすめです。
+このプロジェクトはGitHub Pagesでサイトを公開できます。GitHubへコードを送ると、自動で公開用ファイルを作成してデプロイします。
 
 ### 必要なもの
 
@@ -31,7 +31,7 @@ git remote add origin https://github.com/ユーザー名/re-taste.git
 git push -u origin main
 ```
 
-GitHub のログイン画面が出た場合は、画面の案内に従ってログインしてください。リポジトリURLをこのチャットに送ってもらえれば、接続と公開までこちらで進められます。
+GitHub のログイン画面が出た場合は、画面の案内に従ってログインしてください。最初の送信後、GitHubリポジトリの `Settings` > `Pages` で、公開元を `GitHub Actions` に変更します。数分後、`https://ユーザー名.github.io/リポジトリ名/` で公開されます。
 
 ### 公開前の確認
 
