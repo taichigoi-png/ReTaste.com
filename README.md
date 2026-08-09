@@ -1,100 +1,72 @@
-# vinext-starter
+# Re. Taste
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+「もったいないを、おいしいへ。」を掲げる、規格外農産物に新しい価値を生み出す商品開発プロジェクトです。
 
-## Prerequisites
+第一号商品として、規格外みかん由来のピールを生地に練り込んだ「みかんラスク」を開発しています。
 
-- Node.js `>=22.13.0`
+## Website
 
-## Quick Start
+[Re. Taste 公式サイト](https://re-taste-mikan-rusk.jdrsk.chatgpt.site/)
+
+## GitHub で公開する
+
+このプロジェクトは GitHub にソースコードを公開できます。現在のサイトは Cloudflare Worker を使って動いているため、GitHub はコードの公開・管理先として使い、サイトの公開URLは上記のまま使う方法がおすすめです。
+
+### 必要なもの
+
+- GitHub アカウント
+- GitHub 上の空のリポジトリ
+- このプロジェクトのフォルダ
+
+### 手順
+
+1. [GitHub](https://github.com/new) で `re-taste` などの名前の新しいリポジトリを作成します。
+2. 公開したい場合は `Public` を選びます。
+3. `Add a README file`、`.gitignore`、`Choose a license` は選ばず、空のまま作成します。
+4. 作成後に表示されるリポジトリURLをコピーします。例: `https://github.com/ユーザー名/re-taste.git`
+5. このフォルダで次のコマンドを実行します。
+
+```bash
+git remote add origin https://github.com/ユーザー名/re-taste.git
+git push -u origin main
+```
+
+GitHub のログイン画面が出た場合は、画面の案内に従ってログインしてください。リポジトリURLをこのチャットに送ってもらえれば、接続と公開までこちらで進められます。
+
+### 公開前の確認
+
+このリポジトリには、サイトに表示している電話番号、メールアドレス、代表写真、商品画像が含まれます。GitHub リポジトリを `Public` にすると、これらも誰でも閲覧できる状態になります。
+
+## 開発
+
+必要環境: Node.js 22 以上
 
 ```bash
 npm install
 npm run dev
+```
+
+ブラウザで `http://localhost:3000` を開きます。
+
+### 確認用コマンド
+
+```bash
 npm run build
+npm run lint
 ```
 
-This starter does not use `wrangler.jsonc`.
+`main` ブランチへ更新するたびに、GitHub Actions がサイトのビルドを自動で確認します。
 
-## Included Shape
+## 主なページ
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+- `/` トップページ
+- `/shop` 販売ページ
+- `/coming-soon` 販売開始前のお知らせ
+- `/contact` お問い合わせ
 
-## Workspace Auth Headers
+## 技術
 
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+- React
+- vinext
+- Cloudflare Workers
+- TypeScript
