@@ -112,12 +112,13 @@ export default function Home() {
       </section>
 
       <section className="section story-section">
-        <div className="story-image reveal"><img src="/mikan-rusk-table.png" alt="みかんラスクを割って楽しむ様子" /></div>
+        <div className="story-image founder-image reveal"><img src="/taichi-goi-founder.jpg" alt="Re. Taste代表 五井泰地" /></div>
         <div>
-          <p className="eyebrow">STORY</p>
-          <h2>高校生が、商品化まで挑戦する。</h2>
-          <p>Re. Tasteは、高校生が始めた商品開発プロジェクトです。ただ応援されるためではなく、実際に選ばれる食品ブランドとして続いていくことを目指しています。</p>
-          <p>初回は学校行事や保護者会で200〜300袋程度を販売し、その後は地域イベント、マルシェ、ネット販売へ広げていく計画です。</p>
+          <p className="eyebrow">PROJECT FOUNDER</p>
+          <h2>おいしさから、<br />価値を変えていく。</h2>
+          <p className="founder-name">代表　五井 泰地 <span>（ゴイ タイチ）</span></p>
+          <p>Re. Tasteは、見た目だけで選ばれにくい農産物に、もう一度選ばれる理由をつくるプロジェクトです。社会課題を理由に我慢して買うのではなく、まず「食べたい」と思ってもらえる商品を目指しています。</p>
+          <p>第一号商品のみかんラスクを起点に、学校行事や地域へ届けながら、規格外農産物の新しい価値を広げていきます。</p>
         </div>
       </section>
 
