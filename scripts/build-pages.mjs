@@ -4,6 +4,8 @@ import { pathToFileURL } from "node:url";
 
 const routes = ["/", "/shop", "/coming-soon", "/contact", "/contact/thanks"];
 const outputDirectory = "pages-dist";
+const basePath = "/ReTaste.com";
+const pagesUrl = "https://taichigoi-png.github.io/ReTaste.com";
 
 await rm(outputDirectory, { force: true, recursive: true });
 await mkdir(outputDirectory, { recursive: true });
@@ -28,10 +30,15 @@ for (const route of routes) {
     throw new Error(`Could not export ${route}: ${response.status}`);
   }
 
+  const html = (await response.text())
+    .replace(/(["'])\/(?!\/)/g, `$1${basePath}/`)
+    .replace(/\\(["'])\/(?!\/)/g, `\\$1${basePath}/`)
+    .replaceAll("https://re-taste-mikan-rusk.jdrsk.chatgpt.site/contact/thanks", `${pagesUrl}/contact/thanks`)
+    .replaceAll("https://re-taste.pages.dev", pagesUrl);
   const outputPath = route === "/" ? "index.html" : `${route.slice(1)}/index.html`;
   const filePath = join(outputDirectory, outputPath);
   await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, await response.text());
+  await writeFile(filePath, html);
 }
 
 console.log(`Cloudflare Pages files created in ${outputDirectory}`);
