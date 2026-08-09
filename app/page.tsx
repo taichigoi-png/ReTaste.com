@@ -37,7 +37,7 @@ export default function Home() {
     window.setTimeout(() => {
       product.scrollIntoView({ behavior: "smooth", block: "start" });
       setIsBiting(false);
-    }, 1050);
+    }, 1900);
   }
 
   return (
