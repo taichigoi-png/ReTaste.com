@@ -27,7 +27,7 @@ export default function Home() {
           <a href="#about">About</a>
           <a href="#product">Product</a>
           <a href="#status">Status</a>
-          <a href="#contact">Contact</a>
+          <a href="/contact">Contact</a>
         </nav>
       </header>
 
@@ -150,14 +150,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
-        <div><p className="eyebrow">CONTACT</p><h2>協力・取材・販売場所のご相談はこちら。</h2><p>企業、団体、メディア、イベント主催者の方からのご連絡をお待ちしています。</p></div>
-        <form className="contact-form">
-          <label>お名前<input type="text" name="name" placeholder="山田 太郎" /></label>
-          <label>メールアドレス<input type="email" name="email" placeholder="hello@example.com" /></label>
-          <label>お問い合わせ内容<textarea name="message" placeholder="協力内容やご相談内容をご記入ください" /></label>
-          <button type="button">送信内容を準備する</button>
-        </form>
+      <section className="contact-preview">
+        <img src="/mikan-rusk-table.png" alt="みかんラスクを割って楽しむ様子" />
+        <div>
+          <p className="eyebrow">CONTACT</p>
+          <h2>一緒に、最初の商品を形にする。</h2>
+          <p>協力、取材、販売場所のご相談をお待ちしています。</p>
+          <a className="contact-link" href="/contact">お問い合わせページへ</a>
+        </div>
       </section>
     </main>
   );
