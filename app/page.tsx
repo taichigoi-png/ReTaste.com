@@ -56,6 +56,12 @@ export default function Home() {
         <p>もったいないを、<strong>おいしいへ。</strong><span>理由より先に、また食べたいと思える味を。</span></p>
       </section>
 
+      <section className="gallery-strip" aria-label="みかんラスクのイメージ">
+        <figure className="gallery-card gallery-card-large reveal"><img src="/mikan-rusk-closeup.png" alt="みかんピールが見える薄切りラスク" /></figure>
+        <figure className="gallery-card reveal"><img src="/mikan-rusk-wrapped.png" alt="個包装されたみかんラスク" /></figure>
+        <figure className="gallery-card reveal"><img src="/mikan-rusk-table.png" alt="ラスクを割って楽しむ様子" /></figure>
+      </section>
+
       <section className="section two-column" id="about">
         <div>
           <p className="eyebrow">ABOUT Re. Taste</p>
@@ -106,7 +112,7 @@ export default function Home() {
       </section>
 
       <section className="section story-section">
-        <div className="story-image" aria-hidden="true"><img src="/re-taste-logo-transparent.png" alt="" /></div>
+        <div className="story-image reveal"><img src="/mikan-rusk-table.png" alt="みかんラスクを割って楽しむ様子" /></div>
         <div>
           <p className="eyebrow">STORY</p>
           <h2>高校生が、商品化まで挑戦する。</h2>
