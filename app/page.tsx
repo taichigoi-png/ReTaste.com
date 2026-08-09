@@ -50,6 +50,7 @@ export default function Home() {
         <nav aria-label="サイト内メニュー">
           <a href="#about">About</a>
           <a href="#product">Product</a>
+          <a href="/shop">Shop</a>
           <a href="#status">Status</a>
           <a href="/contact">Contact</a>
         </nav>
@@ -187,10 +188,8 @@ export default function Home() {
 
       <div className={`bite-overlay ${isBiting ? "is-active" : ""}`} aria-hidden="true">
         <div className="bite-snack">
-          <img src="/mikan-rusk-closeup.png" alt="" />
-          <span className="bite-mark bite-mark-one" />
-          <span className="bite-mark bite-mark-two" />
-          <span className="bite-mark bite-mark-three" />
+          <img src="/rusk-bite-illustration.png" alt="" />
+          <span className="bite-mark" />
         </div>
         <p>ぱくっ。</p>
       </div>

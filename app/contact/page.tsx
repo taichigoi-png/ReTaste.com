@@ -9,6 +9,7 @@ export default function ContactPage() {
         <nav aria-label="サイト内メニュー">
           <a href="/">Top</a>
           <a href="/#product">Product</a>
+          <a href="/shop">Shop</a>
           <a href="/contact">Contact</a>
         </nav>
       </header>
