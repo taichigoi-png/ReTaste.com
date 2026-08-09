@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const statusItems = [
   "企画",
   "OEM相談",
@@ -16,6 +20,26 @@ const supportItems = [
 ];
 
 export default function Home() {
+  const [isBiting, setIsBiting] = useState(false);
+
+  function takeABite() {
+    if (isBiting) return;
+
+    const product = document.getElementById("product");
+    if (!product) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      product.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    setIsBiting(true);
+    window.setTimeout(() => {
+      product.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsBiting(false);
+    }, 1050);
+  }
+
   return (
     <main>
       <header className="site-header" aria-label="Re. Taste">
@@ -39,7 +63,7 @@ export default function Home() {
             規格外みかん由来のピールを、生地にたっぷり練り込んだ、軽やかなみかんラスク。ひと口ごとに、甘みとほろ苦さがほどけます。
           </p>
           <div className="hero-actions" aria-label="主なリンク">
-            <a className="button primary" href="#product">みかんラスクを見る</a>
+            <button className="button primary bite-button" onClick={takeABite} type="button">一口かじる</button>
             <a className="button secondary" href="#support">協力について</a>
           </div>
         </div>
@@ -160,6 +184,16 @@ export default function Home() {
           <a className="contact-link" href="/contact">お問い合わせページへ</a>
         </div>
       </section>
+
+      <div className={`bite-overlay ${isBiting ? "is-active" : ""}`} aria-hidden="true">
+        <div className="bite-snack">
+          <img src="/mikan-rusk-closeup.png" alt="" />
+          <span className="bite-mark bite-mark-one" />
+          <span className="bite-mark bite-mark-two" />
+          <span className="bite-mark bite-mark-three" />
+        </div>
+        <p>ぱくっ。</p>
+      </div>
     </main>
   );
 }
